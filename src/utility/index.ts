@@ -8,3 +8,4 @@ export * from "./classes/countrecord.ts"
 
 export * from "./math.ts"
 export * from "./consts.ts"
+export * from "./cache.ts"
