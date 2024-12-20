@@ -28,4 +28,8 @@ export class CountRecord{
     count(){ 
         return Object.values(this.record).reduce((acc, x) => acc + x) 
     }
+
+    clear(){
+        this.record = {}
+    }
 }
