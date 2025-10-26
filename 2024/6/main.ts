@@ -9,7 +9,7 @@ let position: [number, number] = [0, 0]
 let dir = 0
 let blockId = 0
 
-let visited = 1
+let visited = 0
 let loops = 0
 
 const map = input.split("\n").map((a, y) => a.split("").map((b, x) => {
