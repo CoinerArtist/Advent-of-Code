@@ -4,7 +4,9 @@ export * from "./files/log.ts"
 
 export * from "./classes/grid.ts"
 export * from "./classes/objectset.ts"
+export * from "./classes/objectmap.ts"
 export * from "./classes/countrecord.ts"
+export * from "./classes/priorityqueue.ts"
 
 export * from "./math.ts"
 export * from "./consts.ts"

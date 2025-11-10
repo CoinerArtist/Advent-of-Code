@@ -1,25 +1,26 @@
 export class ObjectSet<T>{
     set: Set<string>
+    stringify: (x:T) => string
 
-    constructor(iterable?: Iterable<T> | null)
-    constructor(value: readonly T[] | null)
-    constructor(arg: Iterable<T> | readonly T[] | null | undefined){
+    constructor()
+    constructor(iterable: Iterable<T>, stringify?: (x:T) => string)
+    constructor(value: readonly T[], stringify?: (x:T) => string)
+    constructor(arg: Iterable<T> | readonly T[] = [], stringify: (x:T) => string = JSON.stringify){
         this.set = new Set()
-        if(arg){
-            for(const v of arg){
-                this.add(v)
-            }
+        this.stringify = stringify
+        for(const v of arg){
+            this.add(v)
         }
     }
 
     get size(){ return this.set.size }
 
     add(value: T){
-        this.set.add(JSON.stringify(value))
+        this.set.add(this.stringify(value))
     }
 
     has(value: T){
-        return this.set.has(JSON.stringify(value))
+        return this.set.has(this.stringify(value))
     }
 
     clear(){
@@ -27,6 +28,6 @@ export class ObjectSet<T>{
     }
 
     delete(value: T){
-        this.set.delete(JSON.stringify(value))
+        this.set.delete(this.stringify(value))
     }
 }
