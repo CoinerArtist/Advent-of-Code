@@ -5,7 +5,7 @@ import { copySync, existsSync } from "@std/fs";
 import { copy, readerFromStreamReader } from "@std/io";
 import { red } from "@std/fmt/colors";
 
-const session = Deno.readTextFileSync("./.session").trim()
+const session = Deno.readTextFileSync("./.session").split("\n", 1)[0].trim()
 
 function create(year: number, day: number){
     if(!isValidDate(year, day)) Deno.exit(1)
@@ -81,6 +81,10 @@ if(Deno.args.length === 0){
 } else if(Deno.args.length === 1){
     const [cmd] = Deno.args 
     if(command[cmd]) command[cmd](toyear, today, 0)
+    else help()
+} else if(Deno.args.length === 2){
+    const [cmd, part] = Deno.args
+    if(command[cmd]) command[cmd](toyear, today, parseInt(part))
     else help()
 } else {
     if(Deno.args.length > 4){
