@@ -13,3 +13,7 @@ export function count<T>(iterator: Iterable<T>, counter: (value: T) => number){
     }
     return sum
 }
+
+export function numOfDigits(n: number){
+    return Math.floor(Math.log10(n)) + 1
+}
