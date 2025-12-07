@@ -3,6 +3,8 @@ export class Grid<T>{
     height: number
     width: number
 
+    // --- //
+
     private constructor(height: number, width: number){
         this.height = height
         this.width = width
@@ -54,6 +56,8 @@ export class Grid<T>{
         return grid
     }
 
+    // --- //
+
     get(y: number, x: number): T | undefined
     get<V>(y: number, x: number, def: V): T | V
     get<V>(y: number, x: number, def: V = undefined as V){
@@ -68,6 +72,27 @@ export class Grid<T>{
 
     isInside(y: number, x: number){
         return y >= 0 && y < this.height && x >= 0 && x < this.width
+    }
+
+    find(predicate: (value: T, y: number, x: number) => boolean): [T, number, number] | undefined
+    find<V>(predicate: (value: T, y: number, x: number) => boolean, def: V): [T, number, number] | V
+    find<V>(predicate: (value: T, y: number, x: number) => boolean, def: V = undefined as V){
+        for(let y=0; y<this.height; y++){
+            for(let x=0; x<this.width; x++){
+                if(predicate(this.grid[y][x], y, x)) return [this.grid[y][x], y, x]
+            }
+        }
+        return def
+    }
+
+    findAll(predicate: (value: T, y: number, x: number) => boolean){
+        const found: [T, number, number][] = []
+        for(let y=0; y<this.height; y++){
+            for(let x=0; x<this.width; x++){
+                if(predicate(this.grid[y][x], y, x)) found.push([this.grid[y][x], y, x])
+            }
+        }
+        return found
     }
 
     *iterate(): Generator<[value: T, y: number, x: number]>{
