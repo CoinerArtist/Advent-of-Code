@@ -17,3 +17,11 @@ export function count<T>(iterator: Iterable<T>, counter: (value: T) => number){
 export function numOfDigits(n: number){
     return Math.floor(Math.log10(n)) + 1
 }
+
+export function factorial(n: number){
+    let mul = n
+    for(let i=n-1; i>1; i--){
+        mul *= i
+    }
+    return mul
+}
