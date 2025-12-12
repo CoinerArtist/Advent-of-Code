@@ -25,3 +25,7 @@ export function factorial(n: number){
     }
     return mul
 }
+
+export function floorTo(n: number, to: number){
+    return Math.floor(n/to)*to
+}
